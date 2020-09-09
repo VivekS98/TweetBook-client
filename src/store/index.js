@@ -1,10 +1,14 @@
-import { combineReducers } from 'redux';
-import currentUser from './reducers/currentUser';
-import errors from './reducers/errors';
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './reducers';
+import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({
-    currentUser,
-    errors
-});
-
-export default rootReducer;
+export function configureStore() { 
+    const store = createStore(
+        rootReducer,
+        compose(
+            applyMiddleware(thunk),
+            window.devToolsExtension ? window.devToolsExtension() : f => f
+        )
+    );
+    return store;
+ }
