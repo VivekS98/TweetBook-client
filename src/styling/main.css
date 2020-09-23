@@ -1,13 +1,9 @@
-.App {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-}
-
 .navbar {
     position: fixed;
     bottom: 0;
+    display: flex;
+    justify-items: center;
+    background-color: #407EE2;
 }
 
 .header {
@@ -52,14 +48,26 @@ h3:hover {
     background: url('../styling/logo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    animation: imgFade 1s linear 0s;
+    animation: imgFade 1s ease-in 0s;
 }
 
 .welcome {
     height: fit-content;
     color: white;
     padding-left: 200px;
-    animation: txtFade 1s linear 0s;
+    animation: txtFade 1s ease-in 0s;
+}
+
+.welcome-text {
+    font-size: 70px;
+    font-weight: 400;
+    cursor: default;
+}
+
+.welcome-desc {
+    font-size: large;
+    font-weight: 300;
+    cursor: default;
 }
 
 @keyframes imgFade {

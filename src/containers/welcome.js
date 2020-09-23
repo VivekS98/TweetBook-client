@@ -14,8 +14,8 @@ export default () => (
         </header>
         <div className="background-img">
             <div className="welcome">
-            <h1>Welcome to TweetBook!</h1>
-            <p>A Twitter clone...</p>
+            <h1 className="welcome-text">Welcome to TweetBook!</h1>
+            <p className="welcome-desc">A Twitter clone. <b>Signup</b> to explore more!</p>
             </div>
         </div>
     </div>

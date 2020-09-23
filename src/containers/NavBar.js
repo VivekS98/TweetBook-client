@@ -28,8 +28,8 @@ export default function NavBar() {
             <BottomNavigationAction 
                 component={Link} 
                 to="/home" 
-                label="Nearby" 
-                value="nearby" 
+                label="Home" 
+                value="Home" 
                 icon={<HomeIcon />} 
                 default
             />
@@ -43,8 +43,8 @@ export default function NavBar() {
             <BottomNavigationAction 
                 component={Link} 
                 to="/user" 
-                label="Folder" 
-                value="folder" 
+                label="User" 
+                value="User" 
                 icon={<AccountCircleIcon />} 
             />
         </BottomNavigation>
