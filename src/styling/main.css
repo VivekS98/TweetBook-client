@@ -9,3 +9,75 @@
     position: fixed;
     bottom: 0;
 }
+
+.header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    background-color: #407EE2;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    margin: 3vh;
+    font-family: sans-serif;
+    font-weight: bolder;
+    cursor: default;
+}
+
+h3 {
+    margin: 2vh;
+}
+
+h3:hover {
+    cursor: pointer;
+    color: cyan;
+    border-radius: 3px;
+    transition-delay: .05s;
+    -webkit-transition-delay: .05s;
+}
+
+.background-img {
+    margin: 0%;
+    height: 800px;
+    width: auto;
+    display: flex;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background: url('../styling/logo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: imgFade 1s linear 0s;
+}
+
+.welcome {
+    height: fit-content;
+    color: white;
+    padding-left: 200px;
+    animation: txtFade 1s linear 0s;
+}
+
+@keyframes imgFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes txtFade {
+    from {
+        opacity: 0;
+        transform: translate(0, 100px);
+    }
+    to {
+        opacity: 1;
+        transform-box: translate(0,0);
+    }
+}

@@ -6,6 +6,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import HomeIcon from '@material-ui/icons/Home';
 import '../styling/main.css';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -24,9 +25,28 @@ export default function NavBar() {
   return (
     <div className='navbar'>
         <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-            <BottomNavigationAction label="Nearby" value="nearby" icon={<HomeIcon />} />
-            <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-            <BottomNavigationAction label="Folder" value="folder" icon={<AccountCircleIcon />} />
+            <BottomNavigationAction 
+                component={Link} 
+                to="/home" 
+                label="Nearby" 
+                value="nearby" 
+                icon={<HomeIcon />} 
+                default
+            />
+            <BottomNavigationAction 
+                component={Link} 
+                to="/favorites" 
+                label="Favorites" 
+                value="favorites" 
+                icon={<FavoriteIcon />} 
+            />
+            <BottomNavigationAction 
+                component={Link} 
+                to="/user" 
+                label="Folder" 
+                value="folder" 
+                icon={<AccountCircleIcon />} 
+            />
         </BottomNavigation>
     </div>
   );
