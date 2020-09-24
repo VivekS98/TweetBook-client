@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from "./NavBar";
 import { Route } from 'react-router-dom';
 import Welcome from '../components/welcome';
-import AuthForm from '../components/AuthForm';
+import AuthForm from './AuthForm';
 import '../styling/main.css';
 
 export default () => (
