@@ -1,7 +1,8 @@
 import React from 'react';
 import NavBar from "./NavBar";
 import { Route } from 'react-router-dom';
-import Welcome from './welcome';
+import Welcome from '../components/welcome';
+import AuthForm from '../components/AuthForm';
 import '../styling/main.css';
 
 export default () => (
@@ -9,6 +10,12 @@ export default () => (
         <NavBar />
         <Route exact path="/">
             <Welcome />
+        </Route>
+        <Route path="/signup">
+            <AuthForm auth="signup" />
+        </Route>
+        <Route path="/login">
+            <AuthForm auth="login" />
         </Route>
         <Route path="/home">
             <h1>home!</h1>

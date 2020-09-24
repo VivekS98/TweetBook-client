@@ -7,6 +7,7 @@
 }
 
 .header {
+    width: 100%;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -27,18 +28,19 @@
 
 h3 {
     margin: 2vh;
+    color: white;
+    text-decoration: none;
 }
 
 h3:hover {
     cursor: pointer;
-    color: cyan;
+    color: #245CB7;
     border-radius: 3px;
     transition-delay: .05s;
     -webkit-transition-delay: .05s;
 }
 
 .background-img {
-    margin: 0%;
     height: 800px;
     width: auto;
     display: flex;
@@ -48,14 +50,14 @@ h3:hover {
     background: url('../styling/logo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    animation: imgFade 1s ease-in 0s;
+    animation: imgFade .5s forwards 0s;
 }
 
 .welcome {
     height: fit-content;
     color: white;
     padding-left: 200px;
-    animation: txtFade 1s ease-in 0s;
+    animation: txtFade .5s forwards 0s;
 }
 
 .welcome-text {
@@ -73,9 +75,11 @@ h3:hover {
 @keyframes imgFade {
     from {
         opacity: 0;
+        transform: translate(0, -50px);
     }
     to {
         opacity: 1;
+        transform: translate(0, 0);
     }
 }
 
