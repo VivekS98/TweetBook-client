@@ -12,6 +12,8 @@
     display: flex;
     justify-content: space-between;
     background-color: #407EE2;
+    position: absolute;
+    z-index: 2;
 }
 
 .nav {

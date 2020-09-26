@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { username, email, password, profileImgUrl} from '../components/form';
+import { Username, Email, Password, ProfileImgUrl } from '../components/form';
+import Button from '@material-ui/core/Button';
 
 class AuthForm extends Component {
     constructor(props) {
@@ -12,24 +13,37 @@ class AuthForm extends Component {
             profileImgUrl: ''
         }
     }
+
+    handleChange() {
+
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+    }
+
     render() {
-        let {username, email, password, profileImgUrl} = this.state;
-        let auth = this.props;
-        let form;
+        let {username, email, profileImgUrl} = this.state;
+        let auth = this.props.auth;
+        console.log(auth);
+        let form = undefined;
         if (auth === "signup") {
             form = <div>
-                <form onSubmit={() => this.handleSubmit}>
-                    <username handleChange={() => this.handleChange()} />
-                    <email handleChange={() => this.handleChange()} />
-                    <profileImgUrl handleChange={() => this.handleChange()} />
-                    <password handleChange={() => this.handleChange()} />
-                    <input type="submit" value="Signup" />
+                <form onSubmit={(e) => this.handleSubmit(e)}>
+                    <Username input={username} handleChange={(e) => this.handleChange(e)} /><br />
+                    <Email input={email} handleChange={(e) => this.handleChange(e)} /><br />
+                    <ProfileImgUrl input={profileImgUrl} handleChange={(e) => this.handleChange(e)} /><br />
+                    <Password handleChange={(e) => this.handleChange(e)} /><br />
+                    <Button type="submit" variant="contained" color="primary">
+                        Submit
+                    </Button>
                 </form>
             </div>
         }
         return (
             <React.Fragment>
                 {form}
+                {console.log(this.state)}
             </React.Fragment>
         );
     }
