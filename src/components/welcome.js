@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 var logo = "TweetBook>"
 
 export default () => (
-    <div>
+    <React.Fragment>
         <header className="header">
             <h2 className="logo">{logo}</h2>
             <div className="nav">
@@ -19,5 +19,5 @@ export default () => (
             <p className="welcome-desc"><b>Login/Signup</b> to explore more...</p>
             </div>
         </div>
-    </div>
+    </React.Fragment>
 )
