@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { setCurrentUser } from '../store/actions/actionCreators';
 import { Username, Email, Password, ProfileImgUrl } from '../components/form';
 import Button from '@material-ui/core/Button';
 
@@ -16,19 +17,23 @@ class AuthForm extends Component {
     }
 
     handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.name]: e.target.value, auth: this.props.auth});
         console.log(this.state);
     }
 
     handleSubmit(e) {
         e.preventDefault();
-
+        let { auth, username, email, password, profileImgUrl } = this.state;
+        if(auth === 'signup') {
+            this.props.setCurrentUser(auth, {username, email, password, profileImgUrl});
+        } else {
+            this.props.setCurrentUser(auth, {email, password});
+        }
     }
 
     render() {
         let { username, email, profileImgUrl } = this.state;
         let { auth } = this.props;
-        this.setState({auth});
         let form = (auth === "signup") ?
             <div className="form">
                 <h2 className="auth-text">Join TweetBook today!</h2>
@@ -66,4 +71,4 @@ function mapStataToProps(state) {
     }
 }
 
-export default connect(mapStataToProps, null)(AuthForm);
+export default connect(mapStataToProps, {setCurrentUser})(AuthForm);
