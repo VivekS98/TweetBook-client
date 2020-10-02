@@ -7,6 +7,7 @@ class AuthForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            auth: '',
             username: '',
             email: '',
             password: '',
@@ -25,10 +26,10 @@ class AuthForm extends Component {
     }
 
     render() {
-        let {username, email, profileImgUrl} = this.state;
-        let auth = this.props.auth;
-        console.log(auth);
-        let form = (auth === "signup") ? 
+        let { username, email, profileImgUrl } = this.state;
+        let { auth } = this.props;
+        this.setState({auth});
+        let form = (auth === "signup") ?
             <div className="form">
                 <h2 className="auth-text">Join TweetBook today!</h2>
                 <form onSubmit={(e) => this.handleSubmit(e)}>
