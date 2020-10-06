@@ -4,6 +4,7 @@ import { setCurrentUser } from '../store/actions/actionCreators';
 import { Username, Email, Password, ProfileImgUrl } from '../components/form';
 import Button from '@material-ui/core/Button';
 
+
 class AuthForm extends Component {
     constructor(props) {
         super(props);
@@ -25,9 +26,18 @@ class AuthForm extends Component {
         e.preventDefault();
         let { auth, username, email, password, profileImgUrl } = this.state;
         if(auth === 'signup') {
+            if(username !== "" || email !== "" || password !== ""){
             this.props.setCurrentUser(auth, {username, email, password, profileImgUrl});
+            } else {
+                alert("username, email & password should not be null");
+            }
         } else {
-            this.props.setCurrentUser(auth, {email, password});
+            if( email !== "" || password !== "") {
+                this.props.setCurrentUser(auth, {email, password});
+            } else {
+                alert("email & password should not be null");
+            }
+            
         }
     }
 
