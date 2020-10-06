@@ -6,12 +6,13 @@ export const setCurrentUser = (type, userData) => dispatch => {
         apiCall('post', `/api/auth/${type}`, userData)
         .then(({token, ...user}) => {
             localStorage.setItem('jwtToken', token);
+            debugger;
             dispatch({
                 type: SET_CURRENT_USER,
                 payload: user
             });
             resolve();
         })
-        .catch(err => reject(err))
+        .catch(err => console.log(err))
     })
 }

@@ -15,7 +15,7 @@ export default () => (
             <AuthForm auth="signup" />
         </Route>
         <Route path="/login">
-            <AuthForm auth="login" />
+            <AuthForm auth="signin" />
         </Route>
         <Route path="/home">
             <h1>home!</h1>
