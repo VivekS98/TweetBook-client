@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { setCurrentUser } from '../store/actions/actionCreators';
 import { Username, Email, Password, ProfileImgUrl } from '../components/form';
 import Button from '@material-ui/core/Button';
@@ -29,11 +30,11 @@ class AuthForm extends Component {
         let { auth, username, email, password, profileImgUrl } = this.state;
         if(auth === 'signup') {
             this.props.setCurrentUser(auth, {username, email, password, profileImgUrl})
-                .then(() => console.log("Logged In!"))
+                .then(() => this.props.history.push('/usr/home'))
                 .catch((err) => this.setState({error: true, errorDisc: err}))
         } else {
             this.props.setCurrentUser(auth, {email, password})
-                .then(() => console.log("Logged In!"))
+                .then(() => this.props.history.push('/usr/home'))
                 .catch((err) => this.setState({error: true, errorDisc: err.message}))
         }
     }
@@ -52,7 +53,7 @@ class AuthForm extends Component {
                     <Button type="submit" variant="contained" color="primary">
                         Signup
                     </Button><br />
-                {this.state.error ? <Alert severity="error">{this.state.errorDisc}</Alert>:<div></div>}
+                {this.state.error ? <Alert severity="error">{this.state.errorDisc}</Alert>:null}
                 </form>
             </div>
             : <div className="form">
@@ -63,7 +64,7 @@ class AuthForm extends Component {
                     <Button type="submit" variant="contained" color="primary">
                         Login
                     </Button><br />
-                {this.state.error ? <Alert severity="error">{this.state.errorDisc}</Alert>:<div></div>}
+                {this.state.error ? <Alert severity="error">{this.state.errorDisc}</Alert>:null}
                 </form>
         </div>
         return (
@@ -80,4 +81,4 @@ function mapStataToProps(state) {
     }
 }
 
-export default connect(mapStataToProps, {setCurrentUser})(AuthForm);
+export default withRouter(connect(mapStataToProps, {setCurrentUser})(AuthForm));

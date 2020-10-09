@@ -27,7 +27,7 @@ export default function NavBar() {
         <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
             <BottomNavigationAction 
                 component={Link} 
-                to="/home" 
+                to="/usr/home" 
                 label="Home" 
                 value="Home" 
                 icon={<HomeIcon />} 
@@ -35,14 +35,14 @@ export default function NavBar() {
             />
             <BottomNavigationAction 
                 component={Link} 
-                to="/favorites" 
+                to="/usr/favorites" 
                 label="Favorites" 
                 value="favorites" 
                 icon={<FavoriteIcon />} 
             />
             <BottomNavigationAction 
                 component={Link} 
-                to="/user" 
+                to="/usr/user" 
                 label="User" 
                 value="User" 
                 icon={<AccountCircleIcon />} 

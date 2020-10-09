@@ -1,30 +1,27 @@
 import React from 'react';
-import NavBar from "./NavBar";
 import { Route } from 'react-router-dom';
 import Welcome from '../components/welcome';
+import TweetBook from './tweetbook';
 import AuthForm from './AuthForm';
 import '../styling/main.css';
 
-export default () => (
-    <div className="App">
-        <NavBar />
-        <Route exact path="/">
-            <Welcome />
-        </Route>
-        <Route path="/signup">
-            <AuthForm auth="signup" />
-        </Route>
-        <Route path="/login">
-            <AuthForm auth="signin" />
-        </Route>
-        <Route path="/home">
-            <h1>home!</h1>
-        </Route>
-        <Route path="/favorites">
-            <h1>favorites!</h1>
-        </Route>
-        <Route path="/user">
-            <h1>user!</h1>
-        </Route>
-    </div>
-)
+function ShowCase() {
+    return (
+        <div className="App">
+            <Route exact path="/">
+                <Welcome />
+            </Route>
+            <Route path="/signup">
+                <AuthForm auth="signup" />
+            </Route>
+            <Route path="/login">
+                <AuthForm auth="signin" />
+            </Route>
+            <Route path="/usr">
+                <TweetBook />
+            </Route>
+        </div>
+    );
+}
+
+export default ShowCase;

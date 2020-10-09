@@ -5,8 +5,6 @@
 .navbar {
     position: fixed;
     bottom: 0;
-    display: flex;
-    justify-items: center;
     background-color: #407EE2;
 }
 
