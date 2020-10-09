@@ -14,6 +14,6 @@ export const setCurrentUser = (type, userData) => dispatch => {
             });
             resolve(user);
         })
-        .catch(err => console.log(err))
+        .catch(err => reject(err))
     })
 }
