@@ -15,6 +15,9 @@ export default () => (
         <Route path="/usr/user">
             <User />
         </Route>
+        <Route path="/usr/newTweet">
+            <newTweet />
+        </Route>
         <NavBar />
     </div>
 );

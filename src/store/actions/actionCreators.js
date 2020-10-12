@@ -12,6 +12,14 @@ export const logout = () => dispatch => {
     dispatch(setCurrentUser({}));
 }
 
+export const postNewTweet = (id, data) => {
+    return new Promise((resolve, reject) => {
+        apiCall('post', `/api/users/${id}/messages`, data)
+            .then(data => resolve(data))
+            .catch(err => reject(err.message))
+    })
+}
+
 export const loadMessages = () => dispatch => {
     return new Promise((resolve, reject) => {
         apiCall('get', '/api/messages')
@@ -42,5 +50,5 @@ export const setCurrentUser = (type, userData) => dispatch => {
             resolve(user);
         })
         .catch(err => reject(err))
-    })
+    });
 }
