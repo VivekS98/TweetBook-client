@@ -3,6 +3,7 @@ import Home from './home';
 import User from './user';
 import { Route } from 'react-router-dom';
 import NavBar from "./NavBar";
+import NewTweet from '../components/newTweet';
 
 export default () => (
     <div>
@@ -16,7 +17,7 @@ export default () => (
             <User />
         </Route>
         <Route path="/usr/newTweet">
-            <newTweet />
+            <NewTweet />
         </Route>
         <NavBar />
     </div>

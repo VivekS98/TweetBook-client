@@ -31,7 +31,7 @@ class AuthForm extends Component {
         if(auth === 'signup') {
             this.props.setCurrentUser(auth, {username, email, password, profileImgUrl})
                 .then(() => this.props.history.push('/usr/home'))
-                .catch((err) => this.setState({error: true, errorDisc: err}))
+                .catch((err) => this.setState({error: true, errorDisc: err.message}))
         } else {
             this.props.setCurrentUser(auth, {email, password})
                 .then(() => this.props.history.push('/usr/home'))
