@@ -32,7 +32,7 @@ class NewTweet extends Component {
     }
     render() {
         return (
-            <div className="new-tweet">
+            <div className="message-card">
                 <FormControl component="form" onSubmit={(e) => this.handlePost(e)} fullWidth={true}>
                     <TextField
                     id="outlined-multiline-static"

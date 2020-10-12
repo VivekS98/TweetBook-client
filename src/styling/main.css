@@ -106,17 +106,14 @@ h3:hover {
 }
 
 .add-icon {
-    width: fit-content;
-    height: fit-content;
-    background-color: #407EE2;
-    border-radius: 50%;
-    color: white;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }
 
-.new-tweet {
-    background-color: white;
-    border-radius: 20px;
-    margin: 10px;
+.home-page {
+    height: 100%;
+    width: 100%;
 }
 
 @keyframes imgFade {

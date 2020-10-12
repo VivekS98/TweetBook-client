@@ -4,6 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import { withRouter } from 'react-router-dom';
 import { loadMessages } from '../store/actions/actionCreators';
+import '../styling/main.css';
 
 class Home extends Component {
     createTweet() {
@@ -11,15 +12,16 @@ class Home extends Component {
     }
     render() {
         return (
-            <React.Fragment>
+            <div className="home-page">
                     <Fab 
                      component="button" 
+                     className="add-icon"
                      color="primary" 
                      onClick={() => this.createTweet()}
                     >
                     <AddIcon />
                     </Fab>
-            </React.Fragment>
+            </div>
         );
     }
 }
