@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .App {
     background-color: whitesmoke;
     height: 100%;
@@ -57,7 +59,7 @@ form {
 
 .logo {
     margin: 3vh;
-    font-family: sans-serif;
+    font-family: 'Pacifico', cursive;
     font-weight: bolder;
     cursor: default;
 }
@@ -141,7 +143,29 @@ h3:hover {
 }
 
 @media only screen and (max-width: 600px) {
-
+    .background-img {
+        height: 300px;
+    }
+    .welcome {
+        padding-left: 10px;
+    }
+    .welcome-text {
+        left: 0;
+        font-size: x-large;
+        font-weight: 300;
+        cursor: default;
+    }
+    .welcome-desc {
+        font-size: medium;
+    }
+    .form {
+        height: 100%;
+    }
+    form {
+        width: 300px;
+        padding: 10px;
+        margin: 10px;
+    }
 }
 
 @keyframes imgFade {

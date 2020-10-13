@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
-var logo = "TweetBook>"
-
 const Welcome = (props) => {
     const history = useHistory();
     if(props.auth) {
@@ -15,7 +13,7 @@ const Welcome = (props) => {
         return (
             <React.Fragment>
                 <header className="header">
-                    <h2 className="logo">{logo}</h2>
+                    <h2 className="logo">TweetBook</h2>
                     <div className="nav">
                         <Link to="/signup"><h3>Signup</h3></Link>
                         <Link to="/login"><h3>Login</h3></Link>
@@ -23,8 +21,8 @@ const Welcome = (props) => {
                 </header>
                 <div className="background-img">
                     <div className="welcome">
-                    <h1 className="welcome-text">Welcome to TweetBook!</h1>
-                    <p className="welcome-desc"><b>Login/Signup</b> to explore more...</p>
+                        <h1 className="welcome-text">Welcome to TweetBook!</h1>
+                        <p className="welcome-desc"><b>Login/Signup</b> to explore more...</p>
                     </div>
                 </div>
             </React.Fragment>
