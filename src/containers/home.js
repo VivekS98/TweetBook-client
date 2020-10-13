@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NavBar from "./NavBar";
+import MessageCard from '../components/messageCard';
 import { loadMessages } from '../store/actions/actionCreators';
 import '../styling/main.css';
 
@@ -22,9 +23,12 @@ class Home extends Component {
             })
     }
     render() {
+        let feed = this.state.feed.map((item, index) => {
+            return <MessageCard key={index} post={item} />
+        });
         return (
             <div className="home-page">
-                
+                {feed}
                 <NavBar value={"Home"} />
             </div>
         );
