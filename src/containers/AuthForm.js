@@ -22,7 +22,6 @@ class AuthForm extends Component {
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value, auth: this.props.auth});
-        console.log(this.state);
     }
 
     handleSubmit(e) {
