@@ -6,15 +6,16 @@ import FaceIcon from '@material-ui/icons/Face';
 import '../styling/main.css';
 
 export default ({post}) => {
+    const user = {...post.user};
     return (
         <div className="message-card">
             <p className="post-text">{post.text}</p>
             <Paper component="ul" className="msgcard-info">
                 <Chip label={post.updatedAt} />
                 <Chip 
-                  avatar={post.profileImgUrl ? <Avatar alt={post.username} src={post.profileImgUrl} /> : <FaceIcon />}
+                  avatar={user.profileImgUrl ? <Avatar alt={user.username} src={user.profileImgUrl} /> : <FaceIcon />}
                   clickable
-                  label={post.user.username}
+                  label={user.username}
                 />
             </Paper>
         </div>

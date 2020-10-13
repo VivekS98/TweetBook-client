@@ -129,7 +129,6 @@ h3:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: whitesmoke;
 }
 
 .post-text {
