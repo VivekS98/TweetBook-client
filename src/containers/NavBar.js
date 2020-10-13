@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -10,19 +9,12 @@ import Fab from '@material-ui/core/Fab';
 import '../styling/main.css';
 import { Link, useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles({
-  root: {
-    width: 400,
-  },
-});
-
 function NavBar(props) {
   const history = useHistory();
-  const classes = useStyles();
 
   return (
     <div className='navbar'>
-        <BottomNavigation value={props.value} className={classes.root}>
+        <BottomNavigation value={props.value} className="bottom-nav">
             <BottomNavigationAction 
                 component={Link} 
                 to="/usr/home" 

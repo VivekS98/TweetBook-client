@@ -31,10 +31,12 @@ class Home extends Component {
             });
         }
         return (
+            <React.Fragment>
             <div className="home-page">
                 {feed}
-                <NavBar value={"Home"} />
             </div>
+                <NavBar value={"Home"} />
+            </React.Fragment>
         );
     }
 }

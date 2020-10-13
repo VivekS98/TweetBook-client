@@ -11,7 +11,7 @@ export default ({post}) => {
         <div className="message-card">
             <p className="post-text">{post.text}</p>
             <Paper component="ul" className="msgcard-info">
-                <Chip label={post.updatedAt} />
+                <Chip label={new Date(post.updatedAt).toDateString()} />
                 <Chip 
                   avatar={user.profileImgUrl ? <Avatar alt={user.username} src={user.profileImgUrl} /> : <FaceIcon />}
                   clickable
