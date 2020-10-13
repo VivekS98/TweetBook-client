@@ -54,8 +54,8 @@ class NewTweet extends Component {
     }
 }
 
-const mapStateToProps = (store) => ({
-    currentUserId: store.currentUser.user.id
+const mapStateToProps = (state) => ({
+    currentUserId: state.currentUser.user.id
 });
 
 export default withRouter(connect(mapStateToProps, null)(NewTweet));

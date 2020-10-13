@@ -5,26 +5,24 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import HomeIcon from '@material-ui/icons/Home';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 import '../styling/main.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
-    width: 500,
+    width: 400,
   },
 });
 
-export default function NavBar() {
+function NavBar(props) {
+  const history = useHistory();
   const classes = useStyles();
-  const [value, setValue] = React.useState('recents');
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <div className='navbar'>
-        <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+        <BottomNavigation value={props.value} className={classes.root}>
             <BottomNavigationAction 
                 component={Link} 
                 to="/usr/home" 
@@ -48,6 +46,16 @@ export default function NavBar() {
                 icon={<AccountCircleIcon />} 
             />
         </BottomNavigation>
+        <Fab 
+          component="button" 
+          className="add-icon"
+          color="primary" 
+          onClick={() => history.push("/usr/newTweet")}
+        >
+          <AddIcon />
+        </Fab>
     </div>
   );
 }
+
+export default NavBar;

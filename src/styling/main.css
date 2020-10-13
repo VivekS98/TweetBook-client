@@ -1,11 +1,16 @@
 .App {
     background-color: whitesmoke;
+    height: 100%;
+    width: 100%;
 }
 
 .navbar {
+    width: 100%;
     position: fixed;
     bottom: 0;
-    background-color: #407EE2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .header {
@@ -103,17 +108,25 @@ h3:hover {
     background-color: white;
     border-radius: 20px;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .add-icon {
     position: fixed;
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
 }
 
 .home-page {
     height: 100%;
     width: 100%;
+}
+
+.msgcard-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 @keyframes imgFade {
