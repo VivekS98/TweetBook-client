@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import NavBar from "./NavBar";
 import MessageCard from '../components/messageCard';
@@ -8,17 +8,14 @@ import '../styling/main.css';
 
 function Home(props) {
     const [feed, setFeed] = useState(null);
-    
-    useEffect(() => {
+
         props.loadMessages()
         .then(data => {
             setFeed(data);
-            console.log(feed);
         })
         .catch(err => {
             this.setFeed(err);
-        })
-    });
+        });
 
     let feedPosts = <div className="loading"><CircularProgress /></div>;
     if(feed !== null) {

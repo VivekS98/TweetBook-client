@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setCurrentUser } from '../store/actions/actionCreators';
+import { setCurrentUser, loadMessages } from '../store/actions/actionCreators';
 import { Username, Email, Password, ProfileImgUrl } from '../components/form';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
@@ -29,11 +29,25 @@ class AuthForm extends Component {
         let { auth, username, email, password, profileImgUrl } = this.state;
         if(auth === 'signup') {
             this.props.setCurrentUser(auth, {username, email, password, profileImgUrl})
-                .then(() => this.props.history.push('/usr/home'))
+                .then(() => {
+                    this.props.loadMessages()
+                                .then(() => {
+                                    console.log("Fetched Data!");
+                                    this.props.history.push('/usr/home');
+                                })
+                                .catch(err => console.log(err));
+                })
                 .catch((err) => this.setState({error: true, errorDisc: err.message}))
         } else {
             this.props.setCurrentUser(auth, {email, password})
-                .then(() => this.props.history.push('/usr/home'))
+                .then(() => {
+                    this.props.loadMessages()
+                                .then(() => {
+                                    console.log("Fetched Data!");
+                                    this.props.history.push('/usr/home');
+                                })
+                                .catch(err => console.log(err));
+                })
                 .catch((err) => this.setState({error: true, errorDisc: err.message}))
         }
     }
@@ -80,4 +94,4 @@ function mapStataToProps(state) {
     }
 }
 
-export default withRouter(connect(mapStataToProps, {setCurrentUser})(AuthForm));
+export default withRouter(connect(mapStataToProps, {setCurrentUser, loadMessages})(AuthForm));
