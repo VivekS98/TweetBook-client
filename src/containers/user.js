@@ -53,7 +53,7 @@ class User extends Component {
                         </div>
                     </div>
                     {this.state.dialog ? 
-                    <Dialog show={this.state.dialogInfo}/>
+                    <Dialog show={this.state.dialogInfo} followers={follower} following={followin}/>
                     : null}
 
                 </div>
