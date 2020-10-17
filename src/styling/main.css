@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 .App {
     background-color: whitesmoke;
@@ -128,6 +129,7 @@ h3:hover {
     height: 100%;
     width: 100%;
     margin-bottom: 100px;
+    text-align: center;
 }
 
 .msgcard-info {
@@ -145,6 +147,32 @@ h3:hover {
 .bottom-nav {
     width: 400px;
 } 
+
+.profile-row {
+    background-color: #245CB7;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.profile-img {
+    height: 35vh;
+    width: 35vh;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.profile-info {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: white;
+}
 
 @media only screen and (max-width: 600px) {
     .background-img {

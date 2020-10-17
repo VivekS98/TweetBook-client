@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import NavBar from "./NavBar";
 import MessageCard from '../components/messageCard';
@@ -6,31 +6,41 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { loadMessages } from '../store/actions/actionCreators';
 import '../styling/main.css';
 
-function Home(props) {
-    const [feed, setFeed] = useState(null);
+class Home extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            feed: null,
+            load: false
+        }
+    }
 
-        props.loadMessages()
+    componentDidMount() {
+        this.props.loadMessages()
         .then(data => {
-            setFeed(data);
+            this.setState({feed: data, load: true});
         })
         .catch(err => {
-            this.setFeed(err);
-        });
-
-    let feedPosts = <div className="loading"><CircularProgress /></div>;
-    if(feed !== null) {
-        feedPosts = feed.map((item, index) => {
-            return <MessageCard key={index} post={item} />
+            console.log(err);
         });
     }
-    return (
-        <React.Fragment>
-        <div className="home-page">
-            {feedPosts}
-        </div>
-            <NavBar value={"Home"} />
-        </React.Fragment>
-    );
+
+    render() {
+        let feedPosts = <div className="loading"><CircularProgress /></div>;
+        if(this.state.load === true) {
+            feedPosts = this.state.feed.map((item, index) => {
+                return <MessageCard key={index} post={item} />
+            });
+        }
+        return (
+            <React.Fragment>
+                <div className="home-page">
+                    {feedPosts}
+                </div>
+                <NavBar value={"Home"} />
+            </React.Fragment>
+        );
+    }
 }
 
 const mapStateToProps = (state) => ({
