@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { apiCall } from '../services/api';
 import Dialog from '../components/dialog';
+import MessageCard from '../components/messageCard';
 
 class User extends Component {
     constructor(props) {
@@ -29,8 +30,13 @@ class User extends Component {
         if(this.state.load === true) {
             const { username, profileImgUrl, bio, followers, following, messages } = this.state.user;
             const follower = [...followers];
+            const tweets = messages.map((item, index) => {
+                console.log(item);
+                return <MessageCard key={index} post={item} />
+            });
             const followin = [...following];
-            user = <div className="profile-row">
+            user = <div>
+                <div className="profile-row">
                     <img 
                     className="profile-img" 
                     src={profileImgUrl ? 
@@ -43,10 +49,14 @@ class User extends Component {
                         <p>{bio}</p>
                         <div className="profile-row">
                             <Chip 
+                            component="div"
+                            style={{padding: '10px'}}
                             label={`followers ${follower.length}`}
                             onClick={() => this.setState({dialog: true, dialogInfo: 'followers'})} 
                             />
                             <Chip 
+                            componenet="div"
+                            style={{padding: '10px'}}
                             label={`following ${followin.length}`} 
                             onClick={() => this.setState({dialog: true, dialogInfo: 'followers'})}
                             />
@@ -55,8 +65,9 @@ class User extends Component {
                     {this.state.dialog ? 
                     <Dialog show={this.state.dialogInfo} followers={follower} following={followin}/>
                     : null}
-
                 </div>
+                {tweets}
+            </div>
         }
         return (
             <React.Fragment>

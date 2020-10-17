@@ -9,6 +9,10 @@ import '../styling/main.css';
 export default ({show, followers, following}) => {
     const [open, setOpen] = useState(true);
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     let display = null;
 
     if(show === "following") {
@@ -36,9 +40,6 @@ export default ({show, followers, following}) => {
         });
     }
 
-    const handleClose = () => {
-        setOpen(false);
-    };
     return <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <Fab 
             component="button" 
