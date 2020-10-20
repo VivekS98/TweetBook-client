@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import NavBar from "./NavBar";
+import { withRouter } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { apiCall } from '../services/api';
-import Dialog from '../components/dialog';
 import MessageCard from '../components/messageCard';
 
 class User extends Component {
@@ -13,17 +13,23 @@ class User extends Component {
         this.state = {
             user: null,
             load: false,
-            dialog: false,
-            dialogInfo: ''
+            navbar: null
         }
     }
     componentDidMount() {
-        apiCall('get', `/api/users/${this.props.user.id}`)
-                .then(data => {
+        let { id } = this.props.match.params;
+        const { user } = this.props;
+        console.log(user, " ", id);
+        
+        apiCall('get', `/api/users/${id}`)
+            .then(data => {
+                if(id === user.id) {
+                    this.setState({user: data, load:true, navbar: "User"});
+                } else {
                     this.setState({user: data, load:true});
-                    console.log(this.state.user);
-                })
-                .catch(err => console.log(err));
+                }
+            })
+            .catch(err => console.log(err));
     }
     render() {
         let user = <CircularProgress />;
@@ -31,7 +37,6 @@ class User extends Component {
             const { username, profileImgUrl, bio, followers, following, messages } = this.state.user;
             const follower = [...followers];
             const tweets = messages.map((item, index) => {
-                console.log(item);
                 return <MessageCard key={index} post={item} />
             });
             const followin = [...following];
@@ -62,9 +67,6 @@ class User extends Component {
                             />
                         </div>
                     </div>
-                    {this.state.dialog ? 
-                    <Dialog show={this.state.dialogInfo} followers={follower} following={followin}/>
-                    : null}
                 </div>
                 {tweets}
             </div>
@@ -74,7 +76,7 @@ class User extends Component {
                 <div className="home-page">
                 {user}
                 </div>
-                <NavBar value={"User"} />
+                <NavBar value={this.state.navbar} />
             </React.Fragment>
         )
     }
@@ -84,4 +86,4 @@ const mapStateToProps = (state) => ({
     user: state.currentUser.user
 });
 
-export default connect(mapStateToProps, null)(User);
+export default withRouter(connect(mapStateToProps, null)(User));

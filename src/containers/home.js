@@ -44,6 +44,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.currentUser.user,
     messages: state.messages
 });
 

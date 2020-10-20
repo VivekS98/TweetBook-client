@@ -8,6 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import '../styling/main.css';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function NavBar(props) {
   const history = useHistory();
@@ -17,7 +18,7 @@ function NavBar(props) {
         <BottomNavigation value={props.value} className="bottom-nav">
             <BottomNavigationAction 
                 component={Link} 
-                to="/usr/home" 
+                to="/home" 
                 label="Home" 
                 value="Home" 
                 icon={<HomeIcon />} 
@@ -25,14 +26,14 @@ function NavBar(props) {
             />
             <BottomNavigationAction 
                 component={Link} 
-                to="/usr/favorites" 
+                to="/favorites" 
                 label="Favorites" 
                 value="favorites" 
                 icon={<FavoriteIcon />} 
             />
             <BottomNavigationAction 
                 component={Link} 
-                to="/usr/user" 
+                to={`/user/${props.user}`} 
                 label="User" 
                 value="User" 
                 icon={<AccountCircleIcon />} 
@@ -50,4 +51,8 @@ function NavBar(props) {
   );
 }
 
-export default NavBar;
+const mapStateToProps = state => ({
+  user: state.currentUser.user.id
+});
+
+export default connect(mapStateToProps, null)(NavBar);

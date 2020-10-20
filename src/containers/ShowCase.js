@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Welcome from '../components/welcome';
 import Home from './home';
 import User from './user';
@@ -7,7 +8,7 @@ import AuthForm from './AuthForm';
 import NewTweet from '../components/newTweet';
 import '../styling/main.css';
 
-function ShowCase() {
+function ShowCase({ user }) {
     return (
         <div className="App">
             <Route exact path="/">
@@ -19,20 +20,24 @@ function ShowCase() {
             <Route path="/login">
                 <AuthForm auth="signin" />
             </Route>
-            <Route path="/usr/home">
+            <Route path="/home">
                 <Home />
             </Route>
-            <Route path="/usr/favorites">
+            <Route path="/favorites">
                 <h1>favorites!</h1>
             </Route>    
-                <Route path="/usr/user">
-                    <User />
-                </Route>
-            <Route path="/usr/newTweet">
+            <Route path="/user/:id">
+                <User />
+            </Route>
+            <Route path="/newTweet">
                 <NewTweet />
             </Route>
         </div>
     );
 }
 
-export default ShowCase;
+const mapStateToProps = state => ({
+    user: state.currentUser.user
+});
+
+export default connect(mapStateToProps, null)(ShowCase);

@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 const Welcome = (props) => {
     const history = useHistory();
     if(props.auth) {
-        history.push('/usr/home');
+        history.push('/home');
         return <p>loading...</p>;
     } else {
         return (

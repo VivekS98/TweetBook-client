@@ -1,11 +1,13 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
+import { useHistory } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import FaceIcon from '@material-ui/icons/Face';
 import '../styling/main.css';
 
 export default ({post}) => {
+    const history = useHistory();
     const user = {...post.user};
     return (
         <div className="message-card">
@@ -14,7 +16,7 @@ export default ({post}) => {
                 <Chip label={new Date(post.updatedAt).toDateString()} />
                 <Chip 
                   avatar={user.profileImgUrl ? <Avatar alt={user.username} src={user.profileImgUrl} /> : <FaceIcon />}
-                  clickable
+                  onClick={() => history.push(`/user/${user._id}`)}
                   label={user.username}
                 />
             </Paper>
