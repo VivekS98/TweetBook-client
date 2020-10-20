@@ -43,7 +43,7 @@ function NavBar(props) {
           component="button" 
           className="add-icon"
           color="primary" 
-          onClick={() => history.push("/usr/newTweet")}
+          onClick={() => history.push("/newTweet")}
         >
           <AddIcon />
         </Fab>

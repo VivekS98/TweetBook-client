@@ -23,7 +23,7 @@ class NewTweet extends Component {
         postNewTweet(this.props.currentUserId, {text: this.state.text})
             .then(data => {
                 console.log(data);
-                this.props.history.push('/usr/home');
+                this.props.history.push('/home');
             })
             .catch(err => {
                 console.log(err);
