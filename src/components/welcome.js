@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styling/main.css';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 const Welcome = (props) => {
     const history = useHistory();
@@ -15,8 +15,20 @@ const Welcome = (props) => {
                 <header className="header">
                     <h2 className="logo">TweetBook</h2>
                     <div className="nav">
-                        <Link to="/signup"><h3>Signup</h3></Link>
-                        <Link to="/login"><h3>Login</h3></Link>
+                        <Button 
+                          component="div"
+                          color="inherit"
+                          className="nav-button"
+                          onClick={() => history.push('/signup')}>
+                              Signup
+                        </Button>
+                        <Button 
+                          component="div"
+                          color="inherit"
+                          className="nav-button"
+                          onClick={() => history.push('/login')}>
+                              Login
+                        </Button>
                     </div>
                 </header>
                 <div className="background-img">

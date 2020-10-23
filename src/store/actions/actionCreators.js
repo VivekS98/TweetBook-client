@@ -41,6 +41,7 @@ export const setCurrentUser = (type, userData) => dispatch => {
         apiCall('post', `/api/auth/${type}`, userData)
         .then(({token, ...user}) => {
             localStorage.setItem('jwtToken', token);
+            setAuthorizationToken(localStorage.jwtToken);
             dispatch({
                 type: SET_CURRENT_USER,
                 payload: {
