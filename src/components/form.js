@@ -22,7 +22,7 @@ function Password({handleChange}) {
     return <FormControl fullWidth={true}>
                 <InputLabel htmlFor="my-input">Password</InputLabel>
                 <Input required={true} type="password" id="my-input" aria-describedby="my-helper-text" name="password" onChange={(e) => handleChange(e)} />
-                <FormHelperText id="my-helper-text">Keep it strong and secure.</FormHelperText>
+                <FormHelperText id="my-helper-text">Your passwords are always safe.</FormHelperText>
             </FormControl>
 } 
 

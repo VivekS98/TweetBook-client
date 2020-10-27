@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import NavBar from "./NavBar";
 import { withRouter } from 'react-router-dom';
-import { Chip, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
 import EditIcon from '@material-ui/icons/Edit';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { apiCall } from '../services/api';
 import MessageCard from '../components/messageCard';
+import DialogBox from '../components/dialogBox';
+import '../styling/main.css';
 
 class User extends Component {
     constructor(props) {
@@ -15,7 +17,9 @@ class User extends Component {
             user: null,
             load: false,
             navbar: null,
-            follow: null
+            follow: null,
+            dialog: null,
+            dialogInfo: null
         }
     }
     componentDidMount() {
@@ -78,20 +82,7 @@ class User extends Component {
                     <div className="profile-info">
                         <h1 className="username">{username}</h1>
                         <p style={{color: 'white'}}>{bio}</p>
-                        <div className="profile-row">
-                            <Chip 
-                            component="div"
-                            style={{padding: '10px', margin: '10px'}}
-                            label={`followers ${follower.length}`}
-                            onClick={() => this.setState({dialog: true, dialogInfo: 'followers'})} 
-                            />
-                            <Chip 
-                            componenet="div"
-                            style={{padding: '10px', margin: '10px'}}
-                            label={`following ${followin.length}`} 
-                            onClick={() => this.setState({dialog: true, dialogInfo: 'followers'})}
-                            />
-                        </div>
+                        <DialogBox user={{followers: follower, following: followin}} />
                     </div>
                 {
                     this.state.navbar ? 
