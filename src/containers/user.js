@@ -3,11 +3,11 @@ import NavBar from "./NavBar";
 import { withRouter } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import EditIcon from '@material-ui/icons/Edit';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { apiCall } from '../services/api';
 import MessageCard from '../components/messageCard';
 import DialogBox from '../components/dialogBox';
+import FormDialog from '../components/profileEdit';
 import '../styling/main.css';
 
 class User extends Component {
@@ -61,6 +61,13 @@ class User extends Component {
                 })
                 .catch(err => console.log("Follow: action error ", err))
     }
+
+    editProfile(bioData) {
+        apiCall('put', `/api/users/${this.props.user.id}`, {bio: bioData})
+                .then(data => console.log(data))
+                .catch(err => console.log(err))
+    }
+    
     render() {
         let user = <CircularProgress />;
         if(this.state.load === true) {
@@ -86,12 +93,7 @@ class User extends Component {
                     </div>
                 {
                     this.state.navbar ? 
-                    <Button 
-                      component="button"
-                      style={{ padding: '15px', margin: 'auto 0', borderRadius: '50%' }}
-                      variant="contained">
-                        <EditIcon />
-                    </Button> :
+                    <FormDialog editProfile={(e) => this.editProfile(e)} /> :
                     <Button 
                       component="button"
                       style={{ margin: 'auto 0' }}
