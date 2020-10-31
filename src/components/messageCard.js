@@ -3,7 +3,6 @@ import Chip from '@material-ui/core/Chip';
 import { useHistory } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
-import FaceIcon from '@material-ui/icons/Face';
 import '../styling/main.css';
 
 export default ({post}) => {
@@ -15,7 +14,7 @@ export default ({post}) => {
             <Paper component="ul" className="msgcard-info">
                 <Chip label={new Date(post.updatedAt).toDateString()} />
                 <Chip 
-                  avatar={user.profileImgUrl ? <Avatar alt={user.username} src={user.profileImgUrl} /> : <FaceIcon />}
+                  avatar={<Avatar alt={user.username} src={user.profileImgUrl} />}
                   onClick={() => history.push(`/user/${user._id}`)}
                   label={user.username}
                 />

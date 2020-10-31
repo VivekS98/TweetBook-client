@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Chip } from '@material-ui/core';
+import { Chip } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import '../styling/main.css';
 
 const styles = (theme) => ({
@@ -43,23 +44,40 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
+const namesStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  borderRadius: '20px',
+  margin: '5px',
+  padding: '5px',
+  minWidth: '80px'
+}
 
 export default function CustomizedDialogs({ user }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState(null);
+  const [follow, setFollow] = useState(null);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (data, follow) => {
     setOpen(true);
+    setData(data);
+    setFollow(follow);
   };
   const handleClose = () => {
+    setFollow('');
+    setData(null);
     setOpen(false);
   };
+
+  let showData = <CircularProgress />;
+  if(data !== null) {
+    showData = data.map((item, index) => {
+      return <div key={index} style={namesStyle}>
+        <Avatar alt="Remy Sharp" src={item.profileImgUrl} />
+        <h4 style={{ margin: '5px' }}>{item.username}</h4>
+      </div>
+    })
+  }
 
   return (
     <div>
@@ -68,39 +86,22 @@ export default function CustomizedDialogs({ user }) {
             component="div"
             style={{padding: '10px', margin: '10px'}}
             label={`followers ${user.followers.length}`}
-            onClick={() => handleClickOpen(user.followers)} 
+            onClick={() => handleClickOpen(user.followers, "followers")} 
             />
             <Chip 
             componenet="div"
             style={{padding: '10px', margin: '10px'}}
             label={`following ${user.following.length}`} 
-            onClick={() => handleClickOpen(user.following)}
+            onClick={() => handleClickOpen(user.following, "Following")}
             />
         </div>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          {follow}
         </DialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-            auctor fringilla.
-          </Typography>
+        <DialogContent>
+          {showData}
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Save changes
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );
