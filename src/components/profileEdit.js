@@ -10,7 +10,8 @@ import EditIcon from '@material-ui/icons/Edit';
 
 export default function FormDialog({ editProfile }) {
   const [open, setOpen] = useState(false);
-  const [bio, setBio] = useState('');
+  const [bio, setBio] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,7 +22,7 @@ export default function FormDialog({ editProfile }) {
   };
 
   const handleSubmit = () => {
-    editProfile(bio);
+    editProfile({ bio, profilePic });
     setOpen(false);
   };
 
@@ -48,6 +49,18 @@ export default function FormDialog({ editProfile }) {
             label="Describe yourself"
             type="text"
             onChange={(e) => setBio(e.target.value)}
+            fullWidth
+          />
+          <DialogContentText>
+            Profile Picture:
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Paste a link of nice picture"
+            type="text"
+            onChange={(e) => setProfilePic(e.target.value)}
             fullWidth
           />
         </DialogContent>

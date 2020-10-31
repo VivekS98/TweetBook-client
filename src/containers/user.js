@@ -16,10 +16,7 @@ class User extends Component {
         this.state = {
             user: null,
             load: false,
-            navbar: null,
-            follow: null,
-            dialog: null,
-            dialogInfo: null
+            navbar: null
         }
     }
     componentDidMount() {
@@ -59,11 +56,24 @@ class User extends Component {
                     }
                     console.log(data.tweet)
                 })
-                .catch(err => console.log("Follow: action error ", err))
+                .catch(err => console.log(err))
     }
-
-    editProfile(bioData) {
-        apiCall('put', `/api/users/${this.props.user.id}`, {bio: bioData})
+    
+    editProfile({ bio, profilePic }) {
+        let data = {};
+        if(profilePic !== null) {
+            data = {
+                ...data,
+                profileImgUrl: profilePic
+            } 
+        }
+        if(bio !== null) {
+            data = {
+                ...data,
+                bio
+            }
+        }
+        apiCall('put', `/api/users/${this.props.user.id}`, data)
                 .then(data => console.log(data))
                 .catch(err => console.log(err))
     }
@@ -72,24 +82,22 @@ class User extends Component {
         let user = <CircularProgress />;
         if(this.state.load === true) {
             const { username, profileImgUrl, bio, followers, following, messages } = this.state.user;
-            const follower = [...followers];
             const tweets = messages.map((item, index) => {
                 return <MessageCard key={index} post={item} />
             });
-            const followin = [...following];
             user = <div>
                 <div className="profile-row">
                     <img 
                     className="profile-img" 
                     src={profileImgUrl ? 
-                    user.profileImgUrl : 
+                    profileImgUrl : 
                     "https://www.knack.com/images/about/default-profile.png"} 
                     alt="profile-img"
                     />
                     <div className="profile-info">
                         <h1 className="username">{username}</h1>
                         <p style={{color: 'white'}}>{bio}</p>
-                        <DialogBox user={{followers: follower, following: followin}} />
+                        <DialogBox user={{followers, following}} />
                     </div>
                 {
                     this.state.navbar ? 
