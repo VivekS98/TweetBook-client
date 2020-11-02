@@ -5,9 +5,9 @@ import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.Fragment>
+  <React.StrictMode>
     <App />
-  </React.Fragment>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

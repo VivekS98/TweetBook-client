@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Welcome from '../components/welcome';
 import Home from './home';
 import User from './user';
+import Notifications from './notifications';
 import AuthForm from './AuthForm';
 import NewTweet from '../components/newTweet';
 import '../styling/main.css';
@@ -23,8 +24,8 @@ function ShowCase({ user }) {
             <Route path="/home">
                 <Home />
             </Route>
-            <Route path="/favorites">
-                <h1>favorites!</h1>
+            <Route path="/notifications">
+                <Notifications />
             </Route>    
             <Route path="/user/:id">
                 <User />

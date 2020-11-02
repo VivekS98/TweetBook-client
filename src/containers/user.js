@@ -16,7 +16,8 @@ class User extends Component {
         this.state = {
             user: null,
             load: false,
-            navbar: null
+            navbar: null,
+            follow: null
         }
     }
     componentDidMount() {
