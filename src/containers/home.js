@@ -29,13 +29,16 @@ class Home extends Component {
         let feedPosts = <div className="loading"><CircularProgress /></div>;
         if(this.state.load === true) {
             feedPosts = this.state.feed.map((item, index) => {
-                return <MessageCard key={index} post={item} />
+                return <MessageCard key={index} reload={() => this.reloadConmponent()} post={item} />
             });
         }
+        console.log(this.state.feed);
         return (
             <React.Fragment>
                 <div className="home-page">
+                    <div>
                     {feedPosts}
+                    </div>
                 </div>
                 <NavBar value={"Home"} />
             </React.Fragment>

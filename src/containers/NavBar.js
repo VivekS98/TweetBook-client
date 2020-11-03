@@ -27,8 +27,8 @@ function NavBar(props) {
             <BottomNavigationAction 
                 component={Link} 
                 to="/notifications" 
-                label="notifications" 
-                value="notifications" 
+                label="Notifications" 
+                value="Notifications" 
                 icon={<NotificationsIcon />} 
             />
             <BottomNavigationAction 
