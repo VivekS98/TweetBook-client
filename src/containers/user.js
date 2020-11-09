@@ -97,7 +97,7 @@ class User extends Component {
                     />
                     <div className="profile-info">
                         <h1 className="username">{username}</h1>
-                        <p style={{color: 'white'}}>{bio}</p>
+                        <p style={{color: 'white', maxWidth: '500px'}}>{bio}</p>
                         <DialogBox user={{followers, following}} />
                     </div>
                 {
