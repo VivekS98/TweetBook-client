@@ -118,11 +118,10 @@ h3:hover {
 }
 
 .message-card {
+    width: 800px;
     background-color: white;
     border-radius: 20px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
+    margin: 8px;
 }
 
 .add-icon {
@@ -213,6 +212,9 @@ h3:hover {
         width: 300px;
         padding: 10px;
         margin: 10px;
+    }
+    .message-card {
+        width: 95%;
     }
     .msgcard-info {
         margin: 10px;

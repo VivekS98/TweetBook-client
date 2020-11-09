@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, LOAD_MESSAGES } from '../actionTypes';
+import { SET_CURRENT_USER } from '../actionTypes';
 import { apiCall } from '../../services/api';
 import { setTokenHeader } from '../../services/api';
 
@@ -18,22 +18,6 @@ export const postNewTweet = (id, data) => {
             .then(data => resolve(data))
             .catch(err => reject(err.message))
     })
-}
-
-export const loadMessages = () => dispatch => {
-    return new Promise((resolve, reject) => {
-        apiCall('get', '/api/messages')
-            .then(data => {
-                dispatch({
-                    type: LOAD_MESSAGES,
-                    payload: {
-                        messages: data
-                    }
-                });
-                resolve(data);
-            })
-            .catch(err => reject(err.message))
-    });
 }
 
 export const setCurrentUser = (type, userData) => dispatch => {

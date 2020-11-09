@@ -32,7 +32,7 @@ class NewTweet extends Component {
     }
     render() {
         return (
-            <div className="message-card">
+            <React.Fragment>
                 <FormControl component="form" onSubmit={(e) => this.handlePost(e)} fullWidth={true}>
                     <TextField
                     id="outlined-multiline-static"
@@ -49,7 +49,7 @@ class NewTweet extends Component {
                     </Button>
                 </FormControl><br />
                 {this.state.error ? <Alert severity="error">{this.state.errorDisc}</Alert>:null}
-            </div>
+            </React.Fragment>
         )
     }
 }

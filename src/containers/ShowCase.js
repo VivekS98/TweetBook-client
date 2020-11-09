@@ -18,7 +18,7 @@ function ShowCase({ user }) {
             <Route path="/signup">
                 <AuthForm auth="signup" />
             </Route>
-            <Route path="/login">
+            <Route path="/signin">
                 <AuthForm auth="signin" />
             </Route>
             <Route path="/home">

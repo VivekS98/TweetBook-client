@@ -7,12 +7,12 @@ import { apiCall } from '../services/api';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import '../styling/main.css';
 
-export default ({ post}) => {
+export default ({ userInfo, post}) => {
   const history = useHistory();
   const user = {...post.user};
 
   const isLiked = () => {
-    if(post.likes.some(val => val === post.user._id)) {
+    if(post.likes.some(val => val === userInfo.id)) {
       return true;
     } else {
       return false;
@@ -24,7 +24,7 @@ export default ({ post}) => {
 
   const handleLike = () => {
     if(like === "secondary") {
-      apiCall('delete', `/api/users/${post.user._id}/message/${post._id}/like`)
+      apiCall('delete', `/api/users/${userInfo.id}/message/${post._id}/like`)
         .then(data => {
           setLike("action");
           likeAdd(likeCount - 1);
@@ -32,7 +32,7 @@ export default ({ post}) => {
         })
         .catch(err => console.log(err))
     } else {
-      apiCall('post', `/api/users/${post.user._id}/message/${post._id}/like`)
+      apiCall('post', `/api/users/${userInfo.id}/message/${post._id}/like`)
         .then(data => {
           setLike("secondary");
           likeAdd(likeCount + 1);
@@ -48,7 +48,7 @@ export default ({ post}) => {
       <Paper component="div" className="msgcard-info">
         <div className="msgcard-like">
           <FavoriteIcon onClick={() => handleLike()} fontSize="small" color={like} />
-          <p style={{ margin: '0 10px 0 0' }}>{likeCount}</p>
+          <p style={{ margin: '0 10px' }}>{likeCount}</p>
           <Chip label={new Date(post.updatedAt).toDateString()} />
         </div>
         <Chip 

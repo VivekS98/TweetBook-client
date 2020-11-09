@@ -26,7 +26,7 @@ const Welcome = (props) => {
                           component="div"
                           color="inherit"
                           className="nav-button"
-                          onClick={() => history.push('/login')}>
+                          onClick={() => history.push('/signin')}>
                               Login
                         </Button>
                     </div>

@@ -82,9 +82,9 @@ class User extends Component {
     render() {
         let user = <CircularProgress />;
         if(this.state.load === true) {
-            const { username, profileImgUrl, bio, followers, following, messages } = this.state.user;
+            const { _id, username, profileImgUrl, bio, followers, following, messages } = this.state.user;
             const tweets = messages.map((item, index) => {
-                return <MessageCard key={index} post={item} />
+                return <MessageCard key={index} userInfo={this.props.user} post={{...item, user: { _id, username, profileImgUrl }}} />
             });
             user = <div>
                 <div className="profile-row">
