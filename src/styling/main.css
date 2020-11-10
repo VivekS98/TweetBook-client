@@ -125,9 +125,10 @@ h3:hover {
 }
 
 .notify-card {
+    background-color: white;
     width: 900px;
     padding: 10px;
-    margin: 10px;
+    margin: 8px;
     border-radius: 20px;
 }
 
@@ -150,7 +151,6 @@ h3:hover {
     height: 110%;
     width: auto;
     margin-bottom: 100px;
-    text-align: center;
 }
 
 .msgcard-info {
@@ -230,7 +230,7 @@ h3:hover {
         width: 95%;
     }
     .notify-card {
-        width: 95%;
+        width: 90%;
     }
     .msgcard-info {
         margin: 10px;

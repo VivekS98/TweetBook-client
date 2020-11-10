@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 
 function NavBar(props) {
   const history = useHistory();
+  console.log(props.badge);
 
   return (
     <div className='navbar'>

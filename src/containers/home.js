@@ -12,7 +12,6 @@ class Home extends Component {
         super(props);
         this.state = {
             feed: [],
-            load: false,
             badge: 0
         }
     }
@@ -21,10 +20,15 @@ class Home extends Component {
         console.log(this.state);
         apiCall('get', '/api/messages')
             .then(data => {
-                this.setState({feed: data, load: true});
+                this.setState({feed: data});
                 this.props.fetchNotifications(this.props.user.id)
                     .then(data => {
-                        this.setState({badge: data.length});
+                        let notifyCount = data.reduce((total, current) => {
+                            if(current.read === false) {
+                                return total + 1;
+                            } else return total;
+                        }, 0);
+                        this.setState({badge: notifyCount});
                     })
                     .catch(err => console.log(err));
                 console.log("Fetched Data: ", data);
@@ -36,7 +40,7 @@ class Home extends Component {
 
     render() {
         let feedPosts = <div className="loading"><CircularProgress /></div>;
-        if(this.state.load === true) {
+        if(this.state.feed.length > 0 ) {
             let stateFeed = [...this.state.feed];
             feedPosts = stateFeed.map((item, index) => {
                 return <MessageCard 
