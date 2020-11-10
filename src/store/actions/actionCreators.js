@@ -1,9 +1,31 @@
-import { SET_CURRENT_USER } from '../actionTypes';
+import {SET_NOTIFICATIONS, SET_CURRENT_USER } from '../actionTypes';
 import { apiCall } from '../../services/api';
 import { setTokenHeader } from '../../services/api';
 
 export const setAuthorizationToken = (token) => {
     setTokenHeader(token);
+}
+
+export const markNotifications = id => {
+    return new Promise((resolve, reject) => {
+        apiCall('get', `/api/users/${id}/notify`)
+            .then(data => resolve(data))
+            .catch(err => reject(err));
+    });
+}
+
+export const fetchNotifications = id => dispatch => {
+    return new Promise((resolve, reject) => {
+        apiCall('get', `/api/users/${id}/notify`)
+            .then(data => {
+                dispatch({
+                    type: SET_NOTIFICATIONS,
+                    data
+                });
+                resolve(data);
+            })
+            .catch(err => reject(err));
+    });
 }
 
 export const logout = () => dispatch => {
@@ -17,7 +39,7 @@ export const postNewTweet = (id, data) => {
         apiCall('post', `/api/users/${id}/messages`, data)
             .then(data => resolve(data))
             .catch(err => reject(err.message))
-    })
+    });
 }
 
 export const setCurrentUser = (type, userData) => dispatch => {

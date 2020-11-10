@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import NavBar from "./NavBar";
 import MessageCard from '../components/messageCard';
 import { apiCall } from '../services/api';
+import { fetchNotifications } from '../store/actions/actionCreators';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import '../styling/main.css';
 
@@ -11,7 +12,8 @@ class Home extends Component {
         super(props);
         this.state = {
             feed: [],
-            load: false
+            load: false,
+            badge: 0
         }
     }
 
@@ -20,6 +22,11 @@ class Home extends Component {
         apiCall('get', '/api/messages')
             .then(data => {
                 this.setState({feed: data, load: true});
+                this.props.fetchNotifications(this.props.user.id)
+                    .then(data => {
+                        this.setState({badge: data.length});
+                    })
+                    .catch(err => console.log(err));
                 console.log("Fetched Data: ", data);
             })
             .catch(err => {
@@ -39,13 +46,12 @@ class Home extends Component {
                        />
             });
         }
-        console.log(this.state.feed, this.state.load);
         return (
             <React.Fragment>
                 <div className="home-page">
                     {feedPosts}
                 </div>
-                <NavBar value={"Home"} />
+                <NavBar badge={this.state.badge} value={"Home"} />
             </React.Fragment>
         );
     }
@@ -55,4 +61,4 @@ const mapStateToProps = (state) => ({
     user: state.currentUser.user
 });
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, {fetchNotifications})(Home);
