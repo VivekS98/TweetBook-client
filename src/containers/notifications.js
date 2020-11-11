@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
+import Chip from '@material-ui/core/Chip';
+import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
 import {fetchNotifications, markNotifications } from '../store/actions/actionCreators';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -32,7 +34,12 @@ class Notifications extends Component {
         if(data!== null && data.length > 0) {
             notify = data.map((item, index) => {
                 return <div key={index} className="notify-card">
-                    <p>{item.text}</p>
+                    <Paper component="div" className="msgcard-info">
+                        <h4 style={{padding: '0', margin: '0'}}>{item.text}</h4>
+                        <Chip label={new Date(item.date).toDateString()} />
+                    </Paper>
+                    <p style={{margin: '0 10px'}}>{item.message}</p>
+
                 </div>
             });
         } else notify = <img className="notify" src={emptyImg} alt="empty" />;

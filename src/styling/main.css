@@ -125,6 +125,8 @@ h3:hover {
 }
 
 .notify-card {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     width: 900px;
     padding: 10px;
@@ -134,8 +136,8 @@ h3:hover {
 
 .notify {
     background: url('../styling//text638.png');
-    height: auto;
-    width: auto;
+    height: fit-content;
+    width: fit-content;
 }
 
 .add-icon {
