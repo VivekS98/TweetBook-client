@@ -16,21 +16,25 @@ class Home extends Component {
         }
     }
 
+    notify() {
+        this.props.fetchNotifications(this.props.user.id)
+            .then(res => {
+                let notifyCount = res.reduce((total, current) => {
+                    if(current.read === false) {
+                        return total + 1;
+                    } else return total;
+                }, 0);
+                this.setState({badge: notifyCount});
+            })
+            .catch(err => console.log(err));
+    }
+
     componentDidMount() {
         console.log(this.state);
         apiCall('get', '/api/messages')
             .then(data => {
                 this.setState({feed: data});
-                this.props.fetchNotifications(this.props.user.id)
-                    .then(data => {
-                        let notifyCount = data.reduce((total, current) => {
-                            if(current.read === false) {
-                                return total + 1;
-                            } else return total;
-                        }, 0);
-                        this.setState({badge: notifyCount});
-                    })
-                    .catch(err => console.log(err));
+                this.notify();
                 console.log("Fetched Data: ", data);
             })
             .catch(err => {

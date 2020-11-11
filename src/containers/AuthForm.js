@@ -35,7 +35,7 @@ class AuthForm extends Component {
                 .catch((err) => this.setState({error: true, errorDisc: err.message}))
         } else {
             this.props.setCurrentUser(auth, {email, password})
-                .then(() => {
+                .then(data => {
                     this.props.history.push('/home');
                 })
                 .catch((err) => this.setState({error: true, errorDisc: err.message}))
@@ -84,4 +84,4 @@ function mapStataToProps(state) {
     }
 }
 
-export default withRouter(connect(mapStataToProps, {setCurrentUser})(AuthForm));
+export default withRouter(connect(mapStataToProps, { setCurrentUser })(AuthForm));

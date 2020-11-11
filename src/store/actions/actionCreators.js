@@ -8,7 +8,7 @@ export const setAuthorizationToken = (token) => {
 
 export const markNotifications = id => {
     return new Promise((resolve, reject) => {
-        apiCall('get', `/api/users/${id}/notify`)
+        apiCall('put', `/api/users/${id}/notify`)
             .then(data => resolve(data))
             .catch(err => reject(err));
     });
