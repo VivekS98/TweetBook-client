@@ -6,6 +6,12 @@ import Avatar from "@material-ui/core/Avatar";
 import { apiCall } from "../services/api";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import "../styling/main.css";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+} from "@material-ui/core";
 
 export default function MessageCard({ userInfo, post }) {
   const history = useHistory();
@@ -21,6 +27,8 @@ export default function MessageCard({ userInfo, post }) {
 
   const [like, setLike] = useState(isLiked() ? "secondary" : "action");
   const [likeCount, likeAdd] = useState(post.likes.length);
+  const [open, setOpen] = useState(false);
+  const [follow, setFollow] = useState(null);
 
   const handleLike = () => {
     if (like === "secondary") {
@@ -42,18 +50,33 @@ export default function MessageCard({ userInfo, post }) {
     }
   };
 
+  const handleClickOpen = (data, follow) => {
+    setOpen(true);
+    setFollow(follow);
+  };
+
+  const handleClose = () => {
+    setFollow("");
+    setOpen(false);
+  };
+
   return (
     <div className="message-card">
       <p className="post-text">{post.text}</p>
       <Paper component="div" className="msgcard-info">
         <div className="msgcard-like">
-          <FavoriteIcon
-            onClick={() => handleLike()}
-            fontSize="small"
-            color={like}
-          />
-          <p style={{ margin: "0 10px" }}>{likeCount}</p>
+          <IconButton aria-label="delete" size="small">
+            <FavoriteIcon
+              onClick={() => handleLike()}
+              fontSize="small"
+              color={like}
+            />
+          </IconButton>
+          <IconButton aria-label="delete" size="small">
+            <p style={{ margin: "2px 10px" }}>{likeCount}</p>
+          </IconButton>
           <Chip
+            style={{ margin: "2px" }}
             label={new Date(
               Number(post.updatedAt?.$date?.$numberLong)
             ).toDateString()}
@@ -64,6 +87,16 @@ export default function MessageCard({ userInfo, post }) {
           onClick={() => history.push(`/user/${user._id.$oid}`)}
           label={user.username}
         />
+        <Dialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            {follow}
+          </DialogTitle>
+          <DialogContent>{}</DialogContent>
+        </Dialog>
       </Paper>
     </div>
   );

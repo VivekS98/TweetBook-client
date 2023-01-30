@@ -1,274 +1,282 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 
 .App {
-    background-color: whitesmoke;
-    height: 100%;
-    width: 100%;
+  background-color: whitesmoke;
+  height: 100%;
+  width: 100%;
 }
 
 .loading {
-    text-align: center;
+  text-align: center;
 }
 
 .navbar {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .header {
-    width: 100%;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    background-color: #407EE2;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  background-color: #407ee2;
 }
 
 form {
-    color: black;
-    padding: 20px 150px;
-    text-align: center;
-    border-radius: 30px;
-    background-color: white;
-    width: 500px;
+  color: black;
+  padding: 20px 150px;
+  text-align: center;
+  border-radius: 30px;
+  background-color: white;
+  width: 500px;
 }
 
 .auth-text {
-    color: rgb(129, 127, 127);
+  color: rgb(129, 127, 127);
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: whitesmoke;
-    height: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: whitesmoke;
+  height: 1000px;
 }
 
 .form-inputs {
-    margin: 20px;
+  margin: 20px;
 }
 
 .nav {
-    display: flex;
-    justify-content: space-between;
-    margin: auto 0
+  display: flex;
+  justify-content: space-between;
+  margin: auto 0;
 }
 
 .logo {
-    margin: 3vh;
-    font-family: 'Pacifico', cursive;
-    font-weight: bolder;
-    cursor: default;
+  margin: 3vh;
+  font-family: "Pacifico", cursive;
+  font-weight: bolder;
+  cursor: default;
 }
 
 h3 {
-    margin: 2vh;
-    color: white;
-    text-decoration: none;
+  margin: 2vh;
+  color: white;
+  text-decoration: none;
 }
 
 h3:hover {
-    cursor: pointer;
-    color: #245CB7;
-    border-radius: 3px;
-    transition-delay: .05s;
-    -webkit-transition-delay: .05s;
+  cursor: pointer;
+  color: #245cb7;
+  border-radius: 3px;
+  transition-delay: 0.05s;
+  -webkit-transition-delay: 0.05s;
 }
 
 .background-img {
-    height: 800px;
-    width: auto;
-    display: flex;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    background: url('../styling/logo.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    animation: imgFade .5s forwards 0s;
+  height: 800px;
+  width: auto;
+  display: flex;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background: url("../styling/logo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: imgFade 0.5s forwards 0s;
 }
 
 .nav-button {
-    margin: 10px;
-    color: white;
+  margin: 10px;
+  color: white;
 }
 
 .welcome {
-    height: fit-content;
-    color: white;
-    padding-left: 200px;
-    animation: txtFade .5s forwards 0s;
+  height: fit-content;
+  color: white;
+  padding-left: 200px;
+  animation: txtFade 0.5s forwards 0s;
 }
 
 .welcome-text {
-    font-size: 70px;
-    font-weight: 300;
-    cursor: default;
+  font-size: 70px;
+  font-weight: 300;
+  cursor: default;
 }
 
 .welcome-desc {
-    font-size: large;
-    font-weight: 300;
-    cursor: default;
+  font-size: large;
+  font-weight: 300;
+  cursor: default;
 }
 
 .message-card {
-    width: 900px;
-    background-color: white;
-    border-radius: 20px;
-    margin: 8px;
+  width: 900px;
+  background-color: white;
+  border-radius: 20px;
+  margin: 8px;
+}
+
+.search-screen {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 .notify-card {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    width: 900px;
-    padding: 10px;
-    margin: 8px;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 900px;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 20px;
 }
 
 .notify {
-    background: url('../styling//text638.png');
-    height: fit-content;
-    width: fit-content;
+  background: url("../styling//text638.png");
+  height: fit-content;
+  width: fit-content;
 }
 
 .add-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 .home-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 110%;
-    width: auto;
-    margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 110%;
+  width: auto;
+  padding-top: 10px;
+  padding-bottom: 100px;
 }
 
 .msgcard-info {
-    padding: 5px 10px;
-    margin: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  padding: 5px 10px;
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .msgcard-like {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .post-text {
-    margin: 20px;
-
+  margin: 20px;
 }
 .bottom-nav {
-    width: 400px;
-} 
+  width: 400px;
+}
 
 .profile-row {
-    padding: 10px;
-    background-color: #245CB7;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  padding: 10px;
+  background-color: #245cb7;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .profile-img {
-    height: 35vh;
-    width: 35vh;
-    border-radius: 50%;
-    margin: 10px;
+  height: 35vh;
+  width: 35vh;
+  border-radius: 50%;
+  margin: 10px;
 }
 
 .profile-info {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .username {
-    font-family: 'Source Sans Pro', sans-serif;
-    color: white;
+  font-family: "Source Sans Pro", sans-serif;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
-    .background-img {
-        height: 300px;
-    }
-    .welcome {
-        padding-left: 10px;
-    }
-    .welcome-text {
-        left: 0;
-        font-size: x-large;
-        font-weight: 300;
-        cursor: default;
-    }
-    .welcome-desc {
-        font-size: medium;
-    }
-    .form {
-        height: 100%;
-    }
-    form {
-        width: 300px;
-        padding: 10px;
-        margin: 10px;
-    }
-    .message-card {
-        width: 95%;
-    }
-    .notify-card {
-        width: 90%;
-    }
-    .msgcard-info {
-        margin: 10px;
-        padding: 5px;
-    }
-    .bottom-nav {
-        width: 300px;
-    }
-    .profile-img {
-        height: 20vh;
-        width: 20vh;
-        margin: 10px;
-    }
-    .profile-info {
-        margin: 10px;
-    }
+  .background-img {
+    height: 300px;
+  }
+  .welcome {
+    padding-left: 10px;
+  }
+  .welcome-text {
+    left: 0;
+    font-size: x-large;
+    font-weight: 300;
+    cursor: default;
+  }
+  .welcome-desc {
+    font-size: medium;
+  }
+  .form {
+    height: 100%;
+  }
+  form {
+    width: 300px;
+    padding: 10px;
+    margin: 10px;
+  }
+  .message-card {
+    width: 95%;
+  }
+  .search-screen {
+    width: 95%;
+  }
+  .notify-card {
+    width: 90%;
+  }
+  .msgcard-info {
+    margin: 10px;
+    padding: 5px;
+  }
+  .bottom-nav {
+    width: 300px;
+  }
+  .profile-img {
+    height: 20vh;
+    width: 20vh;
+    margin: 10px;
+  }
+  .profile-info {
+    margin: 10px;
+  }
 }
 
 @keyframes imgFade {
-    from {
-        opacity: 0;
-        transform: translate(0, 80px);
-    }
-    to {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
+  from {
+    opacity: 0;
+    transform: translate(0, 80px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
 }
 
 @keyframes txtFade {
-    from {
-        opacity: 0;
-        transform: translate(0, -200px);
-    }
-    to {
-        opacity: 1;
-        transform-box: translate(0,0);
-    }
+  from {
+    opacity: 0;
+    transform: translate(0, -200px);
+  }
+  to {
+    opacity: 1;
+    transform-box: translate(0, 0);
+  }
 }

@@ -1,47 +1,37 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
-import Chip from "@material-ui/core/Chip";
-import Paper from "@material-ui/core/Paper";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import emptyImg from "../styling/text638.png";
 import "../styling/main.css";
+import { apiCall } from "../services/api";
+import { TextField } from "@material-ui/core";
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-    };
-  }
+const Search = () => {
+  const [searchStr, setSearchStr] = useState("");
+  const [result, setResult] = useState([]);
 
-  render() {
-    let data = this.state.data;
-    let notify = (
-      <div className="loading">
-        <CircularProgress />
+  const handleOnChange = (e) => {
+    setSearchStr(e.target.value);
+    apiCall("get", `/api/users?search=${e.target.value}`, null)
+      .then((data) => setResult(data))
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <div className="search-screen">
+      <div className="notify-card">
+        <TextField
+          id="outlined-basic"
+          label="Search"
+          style={{ backgroundColor: "white" }}
+          variant="outlined"
+          placeholder="Search User"
+          value={searchStr}
+          onChange={handleOnChange}
+          fullWidth
+        />
       </div>
-    );
-    console.log(data);
-    if (data !== null && data.length > 0) {
-      notify = data.map((item, index) => {
-        return (
-          <div key={index} className="notify-card">
-            <Paper component="div" className="msgcard-info">
-              <h4 style={{ padding: "0", margin: "0" }}>{item.text}</h4>
-              <Chip label={new Date(item.date).toDateString()} />
-            </Paper>
-            <p style={{ margin: "0 10px" }}>{item.message}</p>
-          </div>
-        );
-      });
-    } else notify = <img className="notify" src={emptyImg} alt="empty" />;
-    return (
-      <React.Fragment>
-        <div className="home-page">{notify}</div>
-        <NavBar value="Search" />
-      </React.Fragment>
-    );
-  }
-}
+      <NavBar value="Search" />
+    </div>
+  );
+};
 
 export default Search;
