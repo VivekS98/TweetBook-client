@@ -12,7 +12,7 @@ export default function MessageCard({ userInfo, post }) {
   const user = { ...post.user };
 
   const isLiked = () => {
-    if (post.likes.some((val) => val === userInfo.id)) {
+    if (post.likes.some((val) => val._id.$oid === userInfo._id?.$oid)) {
       return true;
     } else {
       return false;
@@ -24,7 +24,7 @@ export default function MessageCard({ userInfo, post }) {
 
   const handleLike = () => {
     if (like === "secondary") {
-      apiCall("delete", `/api/users/${userInfo.id}/message/${post._id}/like`)
+      apiCall("delete", `/api/user/tweet/${post._id.$oid}/like`)
         .then((data) => {
           setLike("action");
           likeAdd(likeCount - 1);
@@ -32,7 +32,7 @@ export default function MessageCard({ userInfo, post }) {
         })
         .catch((err) => console.log(err));
     } else {
-      apiCall("post", `/api/users/${userInfo.id}/message/${post._id}/like`)
+      apiCall("post", `/api/user/tweet/${post._id.$oid}/like`)
         .then((data) => {
           setLike("secondary");
           likeAdd(likeCount + 1);
@@ -53,11 +53,15 @@ export default function MessageCard({ userInfo, post }) {
             color={like}
           />
           <p style={{ margin: "0 10px" }}>{likeCount}</p>
-          <Chip label={new Date(post.updatedAt).toDateString()} />
+          <Chip
+            label={new Date(
+              Number(post.updatedAt?.$date?.$numberLong)
+            ).toDateString()}
+          />
         </div>
         <Chip
           avatar={<Avatar alt={user.username} src={user.profileImgUrl} />}
-          onClick={() => history.push(`/user/${user._id}`)}
+          onClick={() => history.push(`/user/${user._id.$oid}`)}
           label={user.username}
         />
       </Paper>
