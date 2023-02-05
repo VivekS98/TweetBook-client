@@ -9,7 +9,6 @@ import { AccountCircle, Add, Home, Search } from "@material-ui/icons";
 
 function NavBar(props) {
   const history = useHistory();
-  console.log(props.badge);
 
   return (
     <div className="navbar">

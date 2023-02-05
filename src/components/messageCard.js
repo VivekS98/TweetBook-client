@@ -7,28 +7,31 @@ import { apiCall } from "../services/api";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import "../styling/main.css";
 import {
+  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
   IconButton,
 } from "@material-ui/core";
 
+const namesStyle = {
+  display: "flex",
+  flexDirection: "row",
+  borderRadius: "20px",
+  margin: "5px",
+  padding: "5px",
+  minWidth: "80px",
+};
+
 export default function MessageCard({ userInfo, post }) {
-  const history = useHistory();
-  const user = { ...post.user };
-
-  const isLiked = () => {
-    if (post.likes.some((val) => val._id.$oid === userInfo._id?.$oid)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const [like, setLike] = useState(isLiked() ? "secondary" : "action");
+  const [like, setLike] = useState(
+    isLiked(post, userInfo) ? "secondary" : "action"
+  );
   const [likeCount, likeAdd] = useState(post.likes.length);
   const [open, setOpen] = useState(false);
-  const [follow, setFollow] = useState(null);
+
+  const history = useHistory();
+  const user = { ...post.user };
 
   const handleLike = () => {
     if (like === "secondary") {
@@ -50,15 +53,19 @@ export default function MessageCard({ userInfo, post }) {
     }
   };
 
-  const handleClickOpen = (data, follow) => {
-    setOpen(true);
-    setFollow(follow);
-  };
-
-  const handleClose = () => {
-    setFollow("");
-    setOpen(false);
-  };
+  let showData = <CircularProgress />;
+  if (post.likes.length) {
+    showData = post.likes.map((item, index) => {
+      return (
+        <div key={item._id.$oid} style={namesStyle}>
+          <Avatar alt="Remy Sharp" src={item.profileImgUrl} />
+          <h4 style={{ margin: "5px" }}>{item.username}</h4>
+        </div>
+      );
+    });
+  } else {
+    showData = <span>No Likes yet!</span>;
+  }
 
   return (
     <div className="message-card">
@@ -72,7 +79,11 @@ export default function MessageCard({ userInfo, post }) {
               color={like}
             />
           </IconButton>
-          <IconButton aria-label="delete" size="small">
+          <IconButton
+            aria-label="delete"
+            size="small"
+            onClick={() => setOpen(true)}
+          >
             <p style={{ margin: "2px 10px" }}>{likeCount}</p>
           </IconButton>
           <Chip
@@ -84,20 +95,31 @@ export default function MessageCard({ userInfo, post }) {
         </div>
         <Chip
           avatar={<Avatar alt={user.username} src={user.profileImgUrl} />}
-          onClick={() => history.push(`/user/${user._id.$oid}`)}
+          onClick={() => history.push(`/user/${user?._id?.$oid}`)}
           label={user.username}
         />
         <Dialog
-          onClose={handleClose}
+          onClose={() => setOpen(false)}
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            {follow}
+          <DialogTitle
+            id="customized-dialog-title"
+            onClose={() => setOpen(false)}
+          >
+            Likes
           </DialogTitle>
-          <DialogContent>{}</DialogContent>
+          <DialogContent>{showData}</DialogContent>
         </Dialog>
       </Paper>
     </div>
   );
 }
+
+const isLiked = (post, userInfo) => {
+  if (post.likes.some((val) => val._id.$oid === userInfo._id?.$oid)) {
+    return true;
+  } else {
+    return false;
+  }
+};
