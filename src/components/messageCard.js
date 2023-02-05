@@ -10,9 +10,9 @@ import {
   CircularProgress,
   Dialog,
   DialogContent,
-  DialogTitle,
   IconButton,
 } from "@material-ui/core";
+import { DialogTitle } from "./dialogBox";
 
 const namesStyle = {
   display: "flex",
@@ -27,7 +27,7 @@ export default function MessageCard({ userInfo, post }) {
   const [like, setLike] = useState(
     isLiked(post, userInfo) ? "secondary" : "action"
   );
-  const [likeCount, likeAdd] = useState(post.likes.length);
+  const [likeCount, likeAdd] = useState(post?.likes?.length);
   const [open, setOpen] = useState(false);
 
   const history = useHistory();
@@ -54,8 +54,8 @@ export default function MessageCard({ userInfo, post }) {
   };
 
   let showData = <CircularProgress />;
-  if (post.likes.length) {
-    showData = post.likes.map((item, index) => {
+  if (post?.likes?.length) {
+    showData = post?.likes?.map((item, index) => {
       return (
         <div key={item._id.$oid} style={namesStyle}>
           <Avatar alt="Remy Sharp" src={item.profileImgUrl} />
@@ -117,7 +117,7 @@ export default function MessageCard({ userInfo, post }) {
 }
 
 const isLiked = (post, userInfo) => {
-  if (post.likes.some((val) => val._id.$oid === userInfo._id?.$oid)) {
+  if (post?.likes?.some((val) => val._id.$oid === userInfo._id?.$oid)) {
     return true;
   } else {
     return false;

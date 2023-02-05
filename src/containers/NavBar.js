@@ -49,7 +49,7 @@ function NavBar(props) {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.currentUser.user._id.$oid,
+  user: state.currentUser?.user._id?.$oid,
 });
 
 export default connect(mapStateToProps, null)(NavBar);
