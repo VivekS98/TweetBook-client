@@ -65,20 +65,7 @@ const User = (props) => {
   };
 
   const editProfile = ({ bio, profilePic }) => {
-    let data = {};
-    if (profilePic !== null) {
-      data = {
-        ...data,
-        profileImgUrl: profilePic,
-      };
-    }
-    if (bio !== null) {
-      data = {
-        ...data,
-        bio,
-      };
-    }
-    apiCall("put", "/api/user/profile", data)
+    apiCall("put", "/api/user/profile", { bio, profileImgUrl: profilePic })
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
