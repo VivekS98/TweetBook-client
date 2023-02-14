@@ -74,7 +74,11 @@ export default function MessageCard({ userInfo, post, updateTweet }) {
             size="small"
             onClick={() => handleLike()}
           >
-            <FavoriteIcon fontSize="small" color={like} />
+            <FavoriteIcon
+              style={{ padding: "0 5px" }}
+              fontSize="small"
+              color={like}
+            />
           </IconButton>
           <IconButton
             aria-label="delete"
