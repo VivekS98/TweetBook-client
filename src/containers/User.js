@@ -45,20 +45,19 @@ const User = (props) => {
   }, [id]);
 
   const handleFollow = () => {
-    const { follow, user } = this.state;
     let http = "";
-    if (follow === "follow") {
+    if (state.follow === "follow") {
       http = "post";
     } else {
       http = "delete";
     }
 
-    apiCall(http, `/api/user/follow/${user._id.$oid}`)
-      .then(() => {
-        if (follow === "follow") {
-          setState({ follow: "following" });
+    apiCall(http, `/api/user/follow/${id}`)
+      .then((newUserInfo) => {
+        if (state.follow === "follow") {
+          setState({ user: newUserInfo, follow: "following" });
         } else {
-          setState({ follow: "follow" });
+          setState({ user: newUserInfo, follow: "follow" });
         }
       })
       .catch((err) => console.log(err));
@@ -73,7 +72,7 @@ const User = (props) => {
   const tweets = state.user?.messages.map((item, index) => {
     return (
       <MessageCard
-        key={index}
+        key={item._id.$oid}
         userInfo={props.user}
         post={{
           ...item,

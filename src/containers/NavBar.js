@@ -9,7 +9,6 @@ import { AccountCircle, Add, Home, Search } from "@material-ui/icons";
 
 function NavBar(props) {
   const history = useHistory();
-  console.log(props.badge);
 
   return (
     <div className="navbar">
@@ -50,7 +49,7 @@ function NavBar(props) {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.currentUser.user._id.$oid,
+  user: state.currentUser?.user._id?.$oid,
 });
 
 export default connect(mapStateToProps, null)(NavBar);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import Welcome from "../components/welcome";
 import Home from "./home";
@@ -7,8 +7,26 @@ import AuthForm from "./AuthForm";
 import NewTweet from "../components/newTweet";
 import "../styling/main.css";
 import Search from "./Search";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 function ShowCase() {
+  const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (
+      !localStorage?.jwtToken &&
+      (!location.pathname.includes("/signin") ||
+        !location.pathname.includes("/signup"))
+    ) {
+      history.push("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="App">
       <Route exact path="/">

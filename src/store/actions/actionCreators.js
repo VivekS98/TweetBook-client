@@ -14,7 +14,7 @@ export const logout = () => (dispatch) => {
 
 export const postNewTweet = (id, data) => {
   return new Promise((resolve, reject) => {
-    apiCall("post", `/api/user/${id}/messages`, data)
+    apiCall("post", "/api/user/tweet", data)
       .then((data) => resolve(data))
       .catch((err) => reject(err.message));
   });
