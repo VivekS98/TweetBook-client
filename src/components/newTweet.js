@@ -32,14 +32,16 @@ class NewTweet extends Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <div className="new-tweet">
         <FormControl
+          className="message-card"
+          style={{ backgroundColor: "whitesmoke" }}
           component="form"
           onSubmit={(e) => this.handlePost(e)}
-          fullWidth={true}
         >
           <TextField
             id="outlined-multiline-static"
+            style={{ backgroundColor: "white" }}
             label="New Tweet"
             multiline
             rows={4}
@@ -48,8 +50,12 @@ class NewTweet extends Component {
             value={this.state.text}
             onChange={(e) => this.handleChange(e)}
           />
-          <br />
-          <Button type="submit" variant="contained" color="primary">
+          <Button
+            style={{ marginTop: "10px" }}
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
             Post
           </Button>
         </FormControl>
@@ -57,7 +63,7 @@ class NewTweet extends Component {
         {this.state.error ? (
           <Alert severity="error">{this.state.errorDisc}</Alert>
         ) : null}
-      </React.Fragment>
+      </div>
     );
   }
 }

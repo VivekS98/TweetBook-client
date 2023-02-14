@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Edit';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
-export default function FormDialog({ editProfile }) {
+export default function FormDialog(props) {
   const [open, setOpen] = useState(false);
-  const [bio, setBio] = useState(null);
-  const [profilePic, setProfilePic] = useState(null);
+  const [bio, setBio] = useState(props?.bio || null);
+  const [profilePic, setProfilePic] = useState(props?.profilePic || null);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,12 +19,12 @@ export default function FormDialog({ editProfile }) {
   };
 
   const handleSubmit = () => {
-    editProfile({ bio, profilePic });
+    props.editProfile({ bio, profilePic });
     setOpen(false);
   };
 
   return (
-    <div>
+    <>
       <Button 
         component="button"
         onClick={handleClickOpen}
@@ -36,7 +33,7 @@ export default function FormDialog({ editProfile }) {
         <EditIcon />
       </Button>
 
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog maxWidth="md" open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Edit Profile:</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -46,6 +43,7 @@ export default function FormDialog({ editProfile }) {
             autoFocus
             margin="dense"
             id="name"
+            value={bio}
             label="Describe yourself"
             type="text"
             onChange={(e) => setBio(e.target.value)}
@@ -58,6 +56,7 @@ export default function FormDialog({ editProfile }) {
             autoFocus
             margin="dense"
             id="name"
+            value={profilePic}
             label="Paste a link of nice picture"
             type="text"
             onChange={(e) => setProfilePic(e.target.value)}
@@ -73,6 +72,6 @@ export default function FormDialog({ editProfile }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }

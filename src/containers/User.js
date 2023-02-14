@@ -65,9 +65,20 @@ const User = (props) => {
 
   const editProfile = ({ bio, profilePic }) => {
     apiCall("put", "/api/user/profile", { bio, profileImgUrl: profilePic })
-      .then((data) => console.log(data))
+      .then((data) => setState(prev => ({ ...prev, user: {...prev.user, bio: data.bio, profileImgUrl: data.profileImgUrl}})))
       .catch((err) => console.log(err));
   };
+
+
+  const updateTweet = (tweet) => {
+    setState(prev => ({...prev, user: {...prev.user, messages: prev.user.messages.map(msg => {
+      if(msg._id.$oid === tweet._id.$oid) {
+        return tweet;
+      } else {
+        return msg;
+      }
+    })}}))
+  }
 
   const tweets = state.user?.messages.map((item, index) => {
     return (
@@ -82,6 +93,7 @@ const User = (props) => {
             profileImgUrl: state.user?.profileImgUrl,
           },
         }}
+        updateTweet={updateTweet}
       />
     );
   });
@@ -114,7 +126,7 @@ const User = (props) => {
                 />
               </div>
               {state.navbar ? (
-                <FormDialog editProfile={(e) => editProfile(e)} />
+                <FormDialog bio={state.user.bio} profilePic={state.user.profileImgUrl} editProfile={(e) => editProfile(e)} />
               ) : (
                 <Button
                   component="button"

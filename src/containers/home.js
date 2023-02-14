@@ -10,8 +10,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      feed: [],
-      badge: 0,
+      feed: []
     };
   }
 
@@ -26,6 +25,16 @@ class Home extends Component {
       });
   }
 
+  updateTweet(tweet) {
+    this.setState({feed: this.state.feed.map(msg => {
+      if(msg._id.$oid === tweet._id.$oid) {
+        return tweet;
+      } else {
+        return msg;
+      }
+    })})
+  }
+
   render() {
     console.log(this.props);
     let feedPosts = (
@@ -35,16 +44,16 @@ class Home extends Component {
     );
     if (this.state.feed.length > 0) {
       let stateFeed = [...this.state.feed];
-      feedPosts = stateFeed.map((item, index) => {
+      feedPosts = stateFeed.reverse().map((item, index) => {
         return (
-          <MessageCard key={index} userInfo={this.props.user} post={item} />
+          <MessageCard key={index} userInfo={this.props.user} post={item} updateTweet={(tweet) => this.updateTweet(tweet)} />
         );
       });
     }
     return (
       <React.Fragment>
         <div className="home-page">{feedPosts}</div>
-        <NavBar badge={this.state.badge} value={"Home"} />
+        <NavBar value={"Home"} />
       </React.Fragment>
     );
   }

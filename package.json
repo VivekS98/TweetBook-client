@@ -20,7 +20,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8088",
   "scripts": {
     "cypress:open": "cypress open",
     "start": "react-scripts start",

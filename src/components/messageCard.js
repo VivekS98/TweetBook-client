@@ -23,11 +23,10 @@ const namesStyle = {
   minWidth: "80px",
 };
 
-export default function MessageCard({ userInfo, post }) {
+export default function MessageCard({ userInfo, post, updateTweet }) {
   const [like, setLike] = useState(
     isLiked(post, userInfo) ? "secondary" : "action"
   );
-  const [likeCount, likeAdd] = useState(post?.likes?.length);
   const [open, setOpen] = useState(false);
 
   const history = useHistory();
@@ -38,16 +37,14 @@ export default function MessageCard({ userInfo, post }) {
       apiCall("delete", `/api/user/tweet/${post._id.$oid}/like`)
         .then((data) => {
           setLike("action");
-          likeAdd(likeCount - 1);
-          console.log(data);
+          updateTweet(data);
         })
         .catch((err) => console.log(err));
     } else {
       apiCall("post", `/api/user/tweet/${post._id.$oid}/like`)
         .then((data) => {
           setLike("secondary");
-          likeAdd(likeCount + 1);
-          console.log(data);
+          updateTweet(data);
         })
         .catch((err) => console.log(err));
     }
@@ -72,19 +69,19 @@ export default function MessageCard({ userInfo, post }) {
       <p className="post-text">{post.text}</p>
       <Paper component="div" className="msgcard-info">
         <div className="msgcard-like">
-          <IconButton aria-label="delete" size="small">
-            <FavoriteIcon
-              onClick={() => handleLike()}
-              fontSize="small"
-              color={like}
-            />
+          <IconButton
+            aria-label="delete"
+            size="small"
+            onClick={() => handleLike()}
+          >
+            <FavoriteIcon fontSize="small" color={like} />
           </IconButton>
           <IconButton
             aria-label="delete"
             size="small"
             onClick={() => setOpen(true)}
           >
-            <p style={{ margin: "2px 10px" }}>{likeCount}</p>
+            <p style={{ margin: "2px 10px" }}>{post?.likes?.length || 0}</p>
           </IconButton>
           <Chip
             style={{ margin: "2px" }}
