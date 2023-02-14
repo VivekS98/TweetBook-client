@@ -85,7 +85,7 @@ export default function MessageCard({ userInfo, post, updateTweet }) {
             size="small"
             onClick={() => setOpen(true)}
           >
-            <p style={{ margin: "2px 10px" }}>{post?.likes?.length || 0}</p>
+            <p style={{ margin: "0 10px" }}>{post?.likes?.length || 0}</p>
           </IconButton>
           <Chip
             style={{ margin: "2px" }}
